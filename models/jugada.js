@@ -28,6 +28,10 @@ module.exports = (sequelize, DataTypes)=> {
         },
         terminada:{
             type: DataTypes.BOOLEAN
+        },
+        mazo:{
+            type: DataTypes.JSON,
+            allowNull: false
         }
     }, {
         freezeTableName: true

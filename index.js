@@ -6,6 +6,7 @@ const dotenv = require('dotenv').config();
 const routesUsuario = require('./routes/usuario');
 const routesCartas = require('./routes/cards');
 const routesJugadas = require('./routes/jugadas');
+const routesMazo=require('./routes/mazo');
 
 app.use(express.json());
 app.use(cors());
@@ -17,6 +18,7 @@ app.use(cors());
 app.use('/usuarios', routesUsuario);
 app.use('/cartas', routesCartas);
 app.use('/jugadas', routesJugadas);
+app.use('/mazo', routesMazo);
 
 
 const PORT = process.env.PORT || 4000; 

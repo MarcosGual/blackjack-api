@@ -12,6 +12,7 @@ db.models = {};
 db.models.Jugada = require('./jugada')(sequelize, Sequelize.DataTypes);
 db.models.Usuario = require('./usuario')(sequelize, Sequelize.DataTypes);
 db.models.Carta = require('./carta')(sequelize, Sequelize.DataTypes);
+db.models.Mazo=require('./mazo')(sequelize, Sequelize.DataTypes);
 db.models.Usuario.hasMany(db.models.Jugada);
 
 
