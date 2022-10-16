@@ -1,12 +1,12 @@
 const Mazo = require("../models/mazo");
-const {crearServicio}=require('../services/crear')
+const { crearServicio } = require("../services/crear");
 
 const generarMazo = async (req, res) => {
-  try{
-    const {cantidad}=req.body;
-  const respuesta=await crearServicio(cantidad);
-  res.status(201).send(respuesta);
-  }catch(err){
+  try {
+    const { cantMazos } = req.body;
+    const respuesta = await crearServicio(cantMazos);
+    res.status(201).send(respuesta);
+  } catch (err) {
     res.status(501).send(`Error: ${err.message}`);
   }
 };
@@ -26,4 +26,4 @@ const generarMazo = async (req, res) => {
 //   }
 // };
 
-module.exports={generarMazo};
+module.exports = { generarMazo };
