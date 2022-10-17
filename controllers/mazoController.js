@@ -1,29 +1,27 @@
-const Mazo = require("../models/mazo");
 const { crearServicio } = require("../services/crear");
+const { retirarService } = require("../services/retirar");
 
 const generarMazo = async (req, res) => {
   try {
     const { cantMazos } = req.body;
     const respuesta = await crearServicio(cantMazos);
+
     res.status(201).send(respuesta);
   } catch (err) {
     res.status(501).send(`Error: ${err.message}`);
   }
 };
 
-// const retirarCarta = async (req, res) => {
-//   try {
-//     const findMazo = await Mazo.findOne({ where: { id: req.body.mazoId } });
-//     if (!findMazo) {
-//       return res.status(404).json({
-//         error: "El mazo no existe",
-//       });
-//     }
-//     const carta = req.body.cartaId;
+const retirarCartas = async (req, res) => {
+  try {
+    const { id, cartas } = req.body;
 
-//   } catch (err) {
-//     console.log(errr);
-//   }
-// };
+    const mazo = await retirarService(id, cartas);
 
-module.exports = { generarMazo };
+    res.status(200).send(mazo);
+  } catch (err) {
+    res.status(501).send("Error: " + err.message);
+  }
+};
+
+module.exports = { generarMazo, retirarCartas };

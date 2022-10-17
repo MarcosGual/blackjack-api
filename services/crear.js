@@ -3,7 +3,7 @@ const db = require("../models/index.js");
 const Mazo = db.models.Mazo;
 const { generarMazo } = require("../utils/mazo");
 
-const crearServicio = async (mazos, jugadaId) => {
+const crearService = async (mazos, jugadaId) => {
   try {
     const cards = generarMazo(mazos);
     const mazo = new Mazo({
@@ -17,12 +17,12 @@ const crearServicio = async (mazos, jugadaId) => {
       cartasRetiradas: mazo.cartasRetiradas,
     });
 
-    const respuesta = pick(["id", "cartasDisponibles"]);
+    const construirRespuesta = pick(["id", "cartasDisponibles"]);
 
-    return respuesta(nuevoMazo);
+    return construirRespuesta(nuevoMazo);
   } catch (error) {
     console.log(error.message);
   }
 };
 
-module.exports = { crearServicio };
+module.exports = { crearService };
