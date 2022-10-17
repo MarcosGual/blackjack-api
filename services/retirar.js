@@ -23,9 +23,9 @@ const retirarService = async (idMazo, cartas) => {
     await mazo.save();
 
     const construirRespuesta = pipe(
-      pick(["id", "cartasDisponibles"]),
-      assoc("cartas", retiradas),
-      assoc("disponibles", cantidadDisp)
+      pick(["cartasDisponibles"]),
+      assoc("cartasRetiradas", retiradas),
+      assoc("cantDisponible", cantidadDisp)
     );
 
     return construirRespuesta(mazo);
