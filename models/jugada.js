@@ -25,12 +25,19 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.JSON,
         allowNull: false,
       },
+      mazo:{
+        type: DataTypes.JSON,
+        allowNull: false
+      },
       gano: {
         type: DataTypes.BOOLEAN,
       },
       terminada: {
         type: DataTypes.BOOLEAN,
       },
+      blackjack:{
+        type: DataTypes.BOOLEAN
+      }
     },
     {
       freezeTableName: true,

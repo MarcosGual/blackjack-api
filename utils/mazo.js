@@ -1,5 +1,5 @@
 const shuffle = require("shuffle-array");
-const { flatten, pipe, always, times } = require("ramda");
+const { flatten, always, times } = require("ramda");
 
 const cartas = [
   {

@@ -6,6 +6,6 @@ const jugada = require("../models/jugada");
 
 router.get("/:id", jugadaController.consultaJugada);
 router.post("/nueva", AuthMiddleware, jugadaController.nuevaJugada);
-router.put("/actualizar", jugadaController.actualizarJugada);
+router.put("/actualizar", jugadaController.procesarJugada);
 
 module.exports = router;
