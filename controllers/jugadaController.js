@@ -3,7 +3,7 @@ const jugada = require("../models/jugada.js");
 const { crearService } = require("../services/crear");
 const { procesarService } = require("../services/procesar.js");
 const { generarMazo } = require("../utils/mazo");
-const { obtenerPuntos } = require("../utils/obtenerPuntos");
+const { obtenerPuntos } = require("../utils/resultado");
 const Usuario = db.models.Usuario;
 const Jugada = db.models.Jugada;
 

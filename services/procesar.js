@@ -1,12 +1,11 @@
-const { assoc, concat, drop, pick, pickAll, pipe, take } = require("ramda");
+const { assoc, concat, drop, pick, pipe, take } = require("ramda");
+const { NotFoundError, BadRequestError } = require("../utils/errores");
+const { obtenerResultado } = require("../utils/resultado.js");
 const db = require("../models/index.js");
 const Jugada = db.models.Jugada;
-const { NotFoundError, BadRequestError } = require("../utils/errores");
-const { obtenerPuntos } = require("../utils/obtenerPuntos.js");
 
 const procesarService = async (idJugada, participante, cantCartas) => {
   try {
-    console.log(idJugada);
     const jugada = await Jugada.findOne({ where: { id: idJugada } });
 
     if (!jugada) {
@@ -26,13 +25,13 @@ const procesarService = async (idJugada, participante, cantCartas) => {
       throw new BadRequestError();
     }
 
-    const { puntajeCroupier, puntajeUsuario, perdio } = obtenerPuntos(
+    const { puntajeCroupier, puntajeUsuario, quienPerdio } = obtenerResultado(
       participante,
-      cartasCroupier,
-      cartasUsuario
+      jugada.cartasCroupier,
+      jugada.cartasUsuario
     );
 
-    if (perdio) {
+    if (quienPerdio !== "") {
       jugada.terminada = true;
     }
 
@@ -51,10 +50,9 @@ const procesarService = async (idJugada, participante, cantCartas) => {
         "cartasUsuario",
         "terminada",
       ]),
-      assoc("cantDisponible", cantidadDisp)
+      assoc("cantDisponible", cantidadDisp),
+      assoc("perdio", quienPerdio)
     );
-
-    console.log(construirRespuesta(nuevaJugada));
 
     return construirRespuesta(nuevaJugada);
   } catch (error) {
